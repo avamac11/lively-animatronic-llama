@@ -1,0 +1,1 @@
+/home/avam11/.agents/skills/aop-pathway/SKILL.md
