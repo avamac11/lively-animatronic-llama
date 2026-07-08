@@ -1,0 +1,19 @@
+#!/bin/bash
+# This file is the activation script for the virtual environment.
+
+# Get the path to the virtual environment
+VENV_PATH="$(cd "$(dirname "$BASH_SOURCE")/.." && pwd)"
+
+# Add the virtual environment's bin directory to the PATH
+export PATH="$VENV_PATH/bin:$PATH"
+
+# Set the VIRTUAL_ENV environment variable
+export VIRTUAL_ENV="$VENV_PATH"
+
+# Modify the prompt to indicate that the virtual environment is active
+if [ -n "$PS1" ]; then
+    PS1="($VENV_PATH) $PS1"
+fi
+
+# Unset the variables that are not needed
+unset VENV_PATH

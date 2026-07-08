@@ -178,6 +178,7 @@ MIE → KE1 → KE2 → AO
 - **Meaning**: Regulatory feedback exists
 - **Implication**: Dynamic, self-regulating system
 
+
 ## How to Use This Information
 
 ### For Researchers

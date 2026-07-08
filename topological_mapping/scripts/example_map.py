@@ -91,29 +91,37 @@ edges = [
 # Add edges to the graph
 graph.add_edges_from(edges)
 
-# Visualize the topological map
-plt.figure(figsize=(12, 8))
-pos = nx.spring_layout(graph, seed=42, k=0.5)  # k controls node spacing
+# Visualize the topological map with improved clarity
+plt.figure(figsize=(16, 12))
+pos = nx.spring_layout(graph, seed=42, k=0.8)  # Increased k for better spacing
 
-# Color nodes by type
-node_colors = {'MIE': 'lightgreen', 'KE1': 'skyblue', 'KE2': 'skyblue', 
-               'KE3': 'skyblue', 'KE4': 'skyblue', 'KE5': 'skyblue', 'AO': 'salmon'}
+# Color nodes by type with distinct colors
+node_colors = {'MIE': '#98FB98', 'KE1': '#87CEFA', 'KE2': '#87CEFA', 
+               'KE3': '#87CEFA', 'KE4': '#87CEFA', 'KE5': '#87CEFA', 'AO': '#FFA07A'}
 colors = [node_colors[node] for node in graph.nodes()]
 
-# Draw nodes with labels
+# Draw nodes with improved styling
 node_labels = {node: f"{node}\n{nodes[node]}" for node in graph.nodes()}
-nx.draw_networkx_nodes(graph, pos, node_size=3000, node_color=colors, alpha=0.9)
-nx.draw_networkx_labels(graph, pos, labels=node_labels, font_size=10, font_weight='bold')
+nx.draw_networkx_nodes(graph, pos, node_size=3500, node_color=colors, alpha=0.9, edgecolors='black', linewidths=1.5)
 
-# Draw edges with weights
+# Draw labels with better positioning
+nx.draw_networkx_labels(graph, pos, labels=node_labels, font_size=11, font_weight='bold', bbox=dict(facecolor='white', edgecolor='none', alpha=0.7, pad=1))
+
+# Draw edges with improved styling to avoid overlap
 edge_labels = nx.get_edge_attributes(graph, 'weight')
-nx.draw_networkx_edges(graph, pos, width=2, arrowsize=20, edge_color='gray')
-nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels, font_size=8)
+nx.draw_networkx_edges(graph, pos, width=2.5, arrowsize=25, edge_color='gray', connectionstyle='arc3,rad=0.2')
+
+# Create a separate figure for edge labels to avoid overlap
+plt.figure(figsize=(16, 12))
+plt.axis('off')
+nx.draw_networkx_nodes(graph, pos, node_size=3500, node_color=colors, alpha=0.9, edgecolors='black', linewidths=1.5)
+nx.draw_networkx_labels(graph, pos, labels=node_labels, font_size=11, font_weight='bold', bbox=dict(facecolor='white', edgecolor='none', alpha=0.7, pad=1))
+nx.draw_networkx_edges(graph, pos, width=2.5, arrowsize=25, edge_color='gray', connectionstyle='arc3,rad=0.2')
+nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels, font_size=9, font_weight='bold', bbox=dict(facecolor='white', edgecolor='none', alpha=0.7, pad=0.5))
 
 # Add title and adjust layout
 plt.title('Topological Map: Chemical-Induced Liver Toxicity AOP', 
-          fontsize=14, fontweight='bold', pad=20)
-plt.axis('off')
+          fontsize=16, fontweight='bold', pad=20)
 plt.tight_layout()
 
 # Save visualization to the visualizations directory

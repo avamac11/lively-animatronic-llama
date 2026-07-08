@@ -1,6 +1,17 @@
 {
   "version": 1,
   "skills": {
+    "cheminformatics": {
+      "source": "itallstartedwithaidea/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/scientific-research/cheminformatics/SKILL.md",
+      "computedHash": "9f96c04e34871585f1dbbb3ad4e41d32b709a4318aa350fcc9ba52d70c4fbc7e"
+    },
+    "paper-analysis": {
+      "source": "/home/avam11/lively-animatronic-llama/.agents/skills/paper_analysis",
+      "sourceType": "local",
+      "computedHash": "2ae0ebcb77b135fb8940ed4fa34115a48c10770a77490c1c91035c5bbf665563"
+    },
     "pdf": {
       "source": "openai/skills",
       "sourceType": "github",
