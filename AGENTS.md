@@ -1,6 +1,6 @@
 # AGENTS.md
 
-## Repository Overview
+## Repository Overview 
 This repository provides computational chemistry workflows using RDKit for molecular property prediction, virtual screening, ADMET analysis, molecular docking preparation, and chemical space exploration. It also includes capabilities for predicting Adverse Outcome Pathways (AOPs) for molecules using machine learning models, databases, and simulation techniques.
 
 ## Key Files
@@ -8,10 +8,7 @@ This repository provides computational chemistry workflows using RDKit for molec
 - `.gitignore`: Excludes `/secret` directory and `*.pdf` files from version control
 - `skills-lock.json`: Skill dependencies and configurations
 - `topological_mapping/README.md`: Documentation for topological mapping tools
-- `data/analysis/carcinogenesis_analysis.json`: Pre-analyzed carcinogenesis data
-- `data/analysis/liver_toxicity_analysis.json`: Pre-analyzed liver toxicity data
-- `examples/carcinogenesis_map.py`: Example script for carcinogenesis analysis
-- `examples/example_map.py`: General example script
+- `examples/example_map.py`: General example script for topological map
 
 ## Development Commands
 ### Installation
@@ -58,3 +55,4 @@ cheminformatics-aop-system/
 - when applicable, use skills to solve problems/tasks and create results
 - For cheminformatics tasks, use the cheminformatics skill
 - For AOP prediction, use the AOP prediction capabilities in the src/aop directory
+- When calculating ADMET properties, scores, etc, use the skills/admet-scoring, along with the cheminformatics skill, but prioritze using scoring from the admet-scoring skill to use in parallel with cheminformatics
