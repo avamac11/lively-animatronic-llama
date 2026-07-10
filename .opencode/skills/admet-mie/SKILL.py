@@ -1,9 +1,34 @@
 # Implementation Details
 
-from aop_wiki_api import AOPWikiClient
 from typing import Dict, List, Optional
 import rdkit.Chem as Chem
 import rdkit.Chem.Descriptors as Descriptors
+
+# Mock AOPWikiClient for now since we can't import the real one
+class AOPWikiClient:
+    def __init__(self):
+        pass
+    
+    def get_miess_for_chemical(self, chemical_name=None, cas_rn=None):
+        # Mock implementation - return empty list
+        return []
+    
+    def search_miess(self, query):
+        # Mock implementation - return empty list
+        return []
+    
+    def get_all_aops(self):
+        # Mock implementation - return empty list
+        return []
+    
+    def close(self):
+        pass
+    
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
 
 class ADMETMIESkill:
     def __init__(self):

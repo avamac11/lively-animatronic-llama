@@ -1,5 +1,5 @@
 ---
-name: admetbad
+name: dontuse-admet
 description: A skill that calculates ADMET scores for use with Cheminformatics and other skills
 ---
 
