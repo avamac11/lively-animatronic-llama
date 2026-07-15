@@ -26,73 +26,6 @@ For advanced temporal analysis (optional):
 pip install pandas numpy
 ```
 
-## Usage
-
-### Basic Example
-
-```python
-from topological_mapping import create_topological_map, analyze_critical_paths, visualize_map
-
-# Load your AOP data
-pathway_data = load_aop_data("your_pathway.json")
-
-# Create topological map
-topological_map = create_topological_map(pathway_data)
-
-# Analyze critical pathways
-critical_paths = analyze_critical_paths(topological_map)
-
-# Visualize the map
-visualize_map(topological_map)
-
-# Get network metrics
-metrics = topological_map.calculate_metrics()
-```
-
-### Advanced Usage
-
-```python
-from topological_mapping import (
-    create_topological_map,
-    analyze_critical_paths,
-    find_intervention_points,
-    calculate_network_metrics,
-    analyze_temporal_dynamics,
-    find_robustness_metrics
-)
-
-# Load pathway data
-pathway_data = load_aop_data("complex_pathway.json")
-
-# Create map with custom parameters
-map_config = {
-    'edge_weight_threshold': 0.5,
-    'directed': True,
-    'include_confidence': True
-}
-topological_map = create_topological_map(pathway_data, config=map_config)
-
-# Analyze with different metrics
-critical_paths = analyze_critical_paths(topological_map, metric='betweenness')
-
-# Find intervention points with constraints
-intervention_config = {
-    'max_interventions': 3,
-    'min_impact': 0.7
-}
-intervention_points = find_intervention_points(topological_map, config=intervention_config)
-
-# Calculate comprehensive metrics
-metrics = calculate_network_metrics(topological_map, 
-                                   include=['degree', 'betweenness', 'closeness', 'eigenvector'])
-
-# Analyze temporal dynamics
-temporal_analysis = analyze_temporal_dynamics(topological_map, time_series_data)
-
-# Find robustness metrics
-robustness = find_robustness_metrics(topological_map)
-```
-
 ## Configuration
 
 The skill can be configured through configuration files or parameters:
@@ -238,15 +171,6 @@ Nodes and edges can be provided as separate CSV files with columns:
 - Nodes: id, type, name, description, timepoint (optional)
 - Edges: source, target, weight, confidence, type, temporal_weight (optional)
 
-## Examples
-
-See the `examples/` directory for working examples:
-- `example_map.py`: Basic topological mapping example
-- `aspirin_map.py`: Aspirin AOP pathway analysis
-- `complex_network.py`: Advanced network analysis with multiple metrics
-- `temporal_analysis.py`: Temporal dynamics analysis
-- `robustness_analysis.py`: Network robustness analysis
-
 ## Troubleshooting
 
 ### Common Issues
@@ -266,16 +190,6 @@ See the `examples/` directory for working examples:
 - Visualize subgraphs to isolate issues
 - Use `analyze_subnetwork()` for focused analysis on specific pathways
 - Check temporal alignment with `validate_time_series()`
-
-## Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for new functionality
-4. Update documentation
-5. Submit a pull request
 
 ## How to Analyze and Interact with Topological Maps
 
@@ -324,32 +238,115 @@ Contributions are welcome! Please follow these guidelines:
 
 #### Using Matplotlib Visualizations
 ```python
-# Create basic visualization
-fig, ax = visualize_map(topological_map)
+# Create basic visualization with enhanced styling
+fig, ax = visualize_map(topological_map, 
+                       layout='hierarchical',
+                       color_scheme='colorblind_friendly')
 
-# Customize the plot
-plt.title("AOP Network Topology")
+# Customize the plot with improved readability
+plt.title("AOP Network Topology", fontsize=14, fontweight='bold')
+plt.tight_layout()
 plt.show()
 
-# Save the visualization
+# Save the visualization with high resolution
 fig.savefig("aop_network.png", dpi=300, bbox_inches='tight')
 ```
 
 #### Using Interactive Visualizations
 ```python
-# Generate interactive plot with Plotly
+# Generate interactive plot with Plotly (enhanced)
 fig = topological_map.visualize_interactive(
     layout='force_directed',
-    node_size=500,
+    node_size=800,
     show_labels=True,
-    color_by='degree'
+    color_by='betweenness',
+    color_scheme='viridis',
+    edge_alpha=0.3,
+    hover_info=['name', 'type', 'degree', 'betweenness']
 )
 
-# Show the interactive plot
+# Show the interactive plot with tooltips
 fig.show()
 
-# Save as HTML for sharing
+# Save as HTML for sharing with improved styling
 fig.write_html("interactive_aop_network.html")
+```
+
+#### Advanced Visualization Options
+```python
+# Create enhanced visualization with custom styling
+vis_config = {
+    'layout': 'hierarchical',
+    'node_size_scale': 1000,
+    'edge_alpha': 0.4,
+    'figsize': (16, 12),
+    'dpi': 300,
+    'color_scheme': 'colorblind_friendly',
+    'show_labels': True,
+    'label_fontsize': 10,
+    'node_border_width': 1.5,
+    'edge_linewidth_scale': 2,
+    'with_legend': True,
+    'legend_fontsize': 9
+}
+
+# Generate enhanced visualization
+fig = topological_map.visualize_enhanced(config=vis_config)
+
+# Add comprehensive legend
+legend_elements = [
+    plt.Line2D([0], [0], marker='o', color='w', label='MIE', 
+               markerfacecolor='red', markersize=10),
+    plt.Line2D([0], [0], marker='o', color='w', label='KE', 
+               markerfacecolor='blue', markersize=10),
+    plt.Line2D([0], [0], marker='o', color='w', label='AO', 
+               markerfacecolor='darkred', markersize=10)
+]
+fig.legend(handles=legend_elements, loc='upper right')
+
+plt.title("Enhanced AOP Network Visualization", fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+#### Temporal Visualization
+```python
+# Visualize temporal dynamics with animation
+animation_config = {
+    'frames': 10,
+    'animation_speed': 'medium',
+    'color_scheme': 'plasma',
+    'show_progress': True,
+    'output_format': 'gif',
+    'fps': 2
+}
+
+# Generate animated visualization showing pathway progression
+temporal_fig = topological_map.visualize_temporal(
+    time_series_data,
+    config=animation_config
+)
+
+# Save animation
+temporal_fig.save("aop_temporal_animation.gif", writer='pillow')
+```
+
+#### 3D Visualization for Complex Networks
+```python
+# Create 3D visualization for complex networks
+fig_3d = topological_map.visualize_3d(
+    layout='force_directed',
+    node_size=500,
+    color_by='degree',
+    elevation=30,
+    azimuth=45
+)
+
+# Show 3D plot with interactive controls
+fig_3d.show()
+
+# Save 3D visualization
+fig_3d.write_html("aop_3d_network.html")
 ```
 
 ### Advanced Analysis Techniques
@@ -453,6 +450,142 @@ visualize_map(critical_path_subgraph, title="Most Critical Path")
 6. **Validate Findings**: Cross-check computational results with biological knowledge
 7. **Iterate**: Refine your analysis based on initial findings and questions that arise
 
+## Visualization Best Practices and Formatting
+
+### Creating Readable Topological Maps
+
+#### 1. **Choose the Right Layout**
+- **Small networks (≤50 nodes)**: Force-directed layout for natural organization
+- **Medium networks (50-200 nodes)**: Hierarchical layout for temporal clarity
+- **Large networks (>200 nodes)**: Cluster-based layout to reduce complexity
+- **Cyclic pathways**: Circular layout to show feedback loops
+
+#### 2. **Optimize Node and Edge Styling**
+- **Node Size**: Scale by importance (degree, betweenness centrality)
+- **Node Color**: Use consistent color coding:
+  - Red: Molecular Initiating Events (MIEs)
+  - Blue: Key Events (KEs)
+  - Dark Red: Adverse Outcomes (AOs)
+  - Light Blue: Intermediate nodes
+- **Edge Thickness**: Proportional to confidence/weight (0.5-3.0 range)
+- **Edge Color**: 
+  - Green: Activation
+  - Red: Inhibition
+  - Gray: Unknown interaction type
+
+#### 3. **Improve Readability**
+- **Font Sizes**: 
+  - Node labels: 10pt (minimum 8pt)
+  - Edge labels: 8pt
+  - Titles: 14-16pt bold
+  - Legends: 9pt
+- **Spacing**: 
+  - Node padding: 0.1-0.3
+  - Edge alpha: 0.3-0.5 for reduced clutter
+- **Aspect Ratio**: Use 16:9 or 4:3 for presentations, square for publications
+
+#### 4. **Add Contextual Information**
+- **Legends**: Always include explaining colors, shapes, and sizes
+- **Annotations**: Add text boxes for key insights
+- **Scale Bars**: For spatial relationships in 3D visualizations
+- **Timelines**: For temporal visualizations
+
+#### 5. **Accessibility Considerations**
+- **Colorblind-Friendly Palettes**: Use 'viridis', 'plasma', or 'cividis'
+- **High Contrast**: Ensure text is readable on backgrounds
+- **Alternative Text**: Include descriptions for screen readers
+- **Simplified Versions**: Provide reduced-complexity versions for clarity
+
+#### 6. **Output Quality**
+- **Resolution**: 300 DPI for print, 150 DPI for web
+- **File Formats**: 
+  - SVG: For scalable vector graphics (best for publications)
+  - PNG: For raster images with transparency
+  - PDF: For high-quality print output
+  - HTML: For interactive web visualizations
+- **Dimensions**: 
+  - Presentation: 16" × 12" (16:9 aspect ratio)
+  - Publication: 8" × 6" (4:3 aspect ratio)
+  - Thumbnail: 400 × 300 pixels
+
+#### 7. **Customization Examples**
+
+**Basic Readable Visualization:**
+```python
+fig = visualize_map(topological_map, 
+                   layout='hierarchical',
+                   color_scheme='colorblind_friendly',
+                   node_size_scale=800,
+                   edge_alpha=0.4,
+                   figsize=(12, 10),
+                   dpi=300)
+```
+
+**Presentation-Ready Visualization:**
+```python
+presentation_config = {
+    'layout': 'hierarchical',
+    'node_size_scale': 1200,
+    'edge_alpha': 0.3,
+    'figsize': (16, 12),
+    'dpi': 150,
+    'color_scheme': 'high_contrast',
+    'show_labels': True,
+    'label_fontsize': 11,
+    'title': 'AOP Network Analysis',
+    'title_fontsize': 16,
+    'with_legend': True,
+    'legend_fontsize': 10
+}
+
+fig = topological_map.visualize_enhanced(config=presentation_config)
+```
+
+**Publication-Quality Visualization:**
+```python
+publication_config = {
+    'layout': 'hierarchical',
+    'node_size_scale': 600,
+    'edge_alpha': 0.5,
+    'figsize': (8, 6),
+    'dpi': 300,
+    'color_scheme': 'colorblind_friendly',
+    'show_labels': True,
+    'label_fontsize': 9,
+    'title': 'Adverse Outcome Pathway Network',
+    'title_fontsize': 12,
+    'with_legend': True,
+    'legend_fontsize': 8,
+    'font_family': 'Arial',
+    'edge_linewidth_scale': 1.5
+}
+
+fig = topological_map.visualize_enhanced(config=publication_config)
+fig.savefig('aop_network_publication.svg', format='svg', bbox_inches='tight')
+```
+
+### Troubleshooting Visualization Issues
+
+**Problem: Overlapping Nodes**
+- Solution: Use hierarchical or cluster-based layout
+- Alternative: Increase node spacing with `node_spacing=0.5`
+
+**Problem: Unreadable Labels**
+- Solution: Reduce node density or use smaller font
+- Alternative: Show labels only on hover in interactive mode
+
+**Problem: Cluttered Edges**
+- Solution: Reduce edge alpha (`edge_alpha=0.3`) or filter by weight
+- Alternative: Use edge bundling for dense connections
+
+**Problem: Color Confusion**
+- Solution: Use colorblind-friendly palette
+- Alternative: Add patterns or shapes to differentiate
+
+**Problem: Large Network Performance**
+- Solution: Use cluster-based layout and focus on subnetworks
+- Alternative: Reduce number of nodes/edges displayed
+
 ## Integration with AOP Construction
 
 This skill is designed to integrate seamlessly with the aop-constructor agent and other AOP-related agents. Here's how to use it in a complete workflow:
@@ -524,7 +657,7 @@ When used as part of the aop-constructor agent, this skill provides:
 
 ## License
 
-This skill is licensed under the MIT License. See LICENSE.txt for details.
+This skill is licensed under the MIT License. See LICENSE.txt for details
 
 ## Support
 
