@@ -1,0 +1,21 @@
+{
+  "identifiers": {
+    "IdentifierList": {
+      "CID": [
+        9800194
+      ]
+    }
+  },
+  "properties": {
+    "PropertyTable": {
+      "Properties": [
+        {
+          "CID": 9800194,
+          "SMILES": "C[C@@H]1[C@@H]2[C@H](C(=O)N2C(=C1SC3CN(C3)C4=NCCS4)C(=O)O)[C@@H](C)O",
+          "ConnectivitySMILES": "CC1C2C(C(=O)N2C(=C1SC3CN(C3)C4=NCCS4)C(=O)O)C(C)O",
+          "InChIKey": "GXXLUDOKHXEFBQ-YJFSRANCSA-N"
+        }
+      ]
+    }
+  }
+}
