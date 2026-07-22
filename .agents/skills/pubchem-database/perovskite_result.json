@@ -1,0 +1,21 @@
+{
+  "identifiers": {
+    "IdentifierList": {
+      "CID": [
+        165360464
+      ]
+    }
+  },
+  "properties": {
+    "PropertyTable": {
+      "Properties": [
+        {
+          "CID": 165360464,
+          "SMILES": "C[NH3+].[I-].[I-].[I-].[Pb+2]",
+          "ConnectivitySMILES": "C[NH3+].[I-].[I-].[I-].[Pb+2]",
+          "InChIKey": "OAVDNKDAQKEIHT-UHFFFAOYSA-L"
+        }
+      ]
+    }
+  }
+}

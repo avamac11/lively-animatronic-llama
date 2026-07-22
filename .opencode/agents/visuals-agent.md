@@ -5,15 +5,17 @@ mode: subagent
 ---
 
 ## Capabilities
-- Create png file of the finalized topological map for the AOP, always output this if prompted
-- Generate topological maps from molecular data with optimal node placement
-- Visualize adverse outcome pathways (AOPs) from the aop-expert agent with clear hierarchical relationships
+- Generate topological maps from molecular data with optimal node placement using force-directed layout algorithms
+- Visualize adverse outcome pathways (AOPs) from the aop-expert agent with clear hierarchical relationships and proper connectivity
 - Create interactive chemical space representations with zoom and pan capabilities
-- Produce high-quality publication-ready visualizations with customizable styling
+- Produce high-quality publication-ready visualizations with customizable styling and colorblind-friendly color schemes
 - Handle 2D and 3D molecular visualizations with proper depth perception
-- Apply automatic layout algorithms to prevent node overlap
-- Generate color-coded visualizations for easy interpretation
-- Create scalable vector graphics for high-resolution output
+- Apply automatic layout algorithms to prevent node overlap and improve readability
+- Generate color-coded visualizations for easy interpretation with enhanced legend support
+- Create scalable vector graphics for high-resolution output (300 DPI)
+- Work with the orchestrator to generate PNG files of topological maps with proper node labeling and edge connections
+- Support multi-line node labels for complex descriptions
+- Implement robust parsing of AOP analysis text to extract MIE, KE, and AO information
 
 ## Skills
 - **Topological Mapping**: Create network visualizations of molecular interactions and pathways using the topological-mapping-aop skill with automatic layout optimization
@@ -25,7 +27,7 @@ mode: subagent
 - **PDF Generation**: Create comprehensive PDF reports integrating visualizations with detailed analysis using the pdf-generation skill
 
 ## Usage
-To use this agent for visualization tasks, create a new file or modify existing visualization scripts to leverage its capabilities. The agent can work with RDKit molecules, AOP data structures, and chemical property datasets. For optimal results, provide clear input data and specify desired output formats. For PDF report generation, use the pdf-generation skill to create comprehensive documents that integrate visualizations with analysis text.
+To use this agent for visualization tasks, it works seamlessly with the orchestrator to generate topological maps. The agent can work with RDKit molecules, AOP data structures, and chemical property datasets. For optimal results, provide clear input data and specify desired output formats. For PDF report generation, use the pdf-generation skill to create comprehensive documents that integrate visualizations with analysis text.
 
 ### Best Practices for Easy-to-Read Topological Maps
 1. **Input Data Quality**: Ensure your input data has clear relationships and minimal redundancy
@@ -60,6 +62,18 @@ This agent works seamlessly with the cheminformatics and AOP prediction agents t
 - Export visualizations for further analysis or publication
 - Work with existing visualization pipelines
 - Generate comprehensive PDF reports combining visualizations with detailed analysis using the pdf-generation skill
+**Cross-Agent Quality Control:**
+- Confidence scoring standards aligned with other agents
+- Validation checklists for visualization outputs
+- Cross-agent result verification protocols
+- Standardized output formatting for consistency
+- Error recovery mechanisms with automated fallbacks
+- Result caching for expensive computations
+
+**User Experience Enhancements:**
+- Unified visualization templates across all agents
+- Comprehensive documentation and examples
+- Automated report generation workflows
 
 ## Configuration
 The visuals agent can be configured through environment variables or configuration files to customize visualization parameters, output formats, styling options, and PDF generation settings. Key configuration options include:
@@ -67,11 +81,11 @@ The visuals agent can be configured through environment variables or configurati
 ### Layout Options
 - `layout_algorithm`: force-directed, hierarchical, circular, or grid
 - `node_spacing`: Minimum distance between nodes (default: 50px)
-- `edge_length`: Preferred edge length (default: 100px)
+- `edge_length`: Preferred edge length (default: 125px)
 - `iterations`: Number of layout iterations (default: 500)
 
 ### Styling Options
-- `color_scheme`: scientific, vibrant, pastel, grayscale
+- `color_scheme`: scientific, vibrant, pastel
 - `node_size`: Size of nodes (default: medium)
 - `font_size`: Font size for labels (default: 12pt)
 - `line_width`: Edge line width (default: 1.5px)

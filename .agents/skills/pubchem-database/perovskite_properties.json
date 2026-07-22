@@ -1,0 +1,16 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 165360464,
+        "MolecularFormula": "CH6I3NPb",
+        "MolecularWeight": "620",
+        "ExactMass": "620.7401",
+        "TPSA": 27.6,
+        "HBondDonorCount": 1,
+        "HBondAcceptorCount": 3,
+        "RotatableBondCount": 0
+      }
+    ]
+  }
+}

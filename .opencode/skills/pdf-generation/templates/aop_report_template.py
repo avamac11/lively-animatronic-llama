@@ -56,6 +56,16 @@ def create_aop_report_template():
         spaceAfter=6
     )
     
+    subtitle_style = ParagraphStyle(
+        'CustomSubtitle',
+        parent=styles['Normal'],
+        fontSize=12,
+        leading=16,
+        spaceAfter=6,
+        textColor=colors.darkblue,
+        bold=1
+    )
+    
     # Table style
     table_style = TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.lightblue),
@@ -71,6 +81,7 @@ def create_aop_report_template():
     return {
         'styles': styles,
         'title_style': title_style,
+        'subtitle_style': subtitle_style,
         'heading_style': heading_style,
         'subheading_style': subheading_style,
         'normal_style': normal_style,
